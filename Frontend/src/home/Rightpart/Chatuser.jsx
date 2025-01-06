@@ -11,7 +11,8 @@ function Chatuser() {
   };
 
   return (
-    <div className=" pl-5 pt-5 h-[12vh] flex space-x-4 bg-gray-700 hover:bg-gray-600 duration-300">
+    //change colorof chat user to white
+    <div className=" pl-5 pt-5 h-[12vh] flex space-x-4 bg-black  :bg-gray-600 duration-300">
       <div>
         <div className="avatar online">
           <div className="w-14 rounded-full">
