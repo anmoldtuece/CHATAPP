@@ -15,7 +15,7 @@ function User({ user }) {
       }`}
       onClick={() => setSelectedConversation(user)}
     >
-      <div className="flex space-x-4 px-8 py-3 hover:bg-slate-700 duration-300 cursor-pointer">
+      <div className="flex space-x-4 px-8 py-3 hover:bg-gray-600 duration-300 cursor-pointer">
         <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             {/* Use dynamic profile picture or fallback */}

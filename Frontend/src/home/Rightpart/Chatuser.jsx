@@ -14,7 +14,7 @@ function Chatuser() {
     <div className="pl-5 pt-5 h-[12vh] flex space-x-4 bg-black duration-300">
       <div>
         <div className="avatar online">
-          <div className="w-14 rounded-full">
+          <div className="w-12 rounded-full">
             <img
               src={
                 selectedConversation?.profile_pic || 

@@ -20,8 +20,8 @@ function Typesend() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex space-x-1 h-[8vh] bg-gray-800">
-        <div className="w-[70%] mx-4 relative">
+      <div className="flex space-x-1 h-[10vh] bg-gray-800 items-center">
+        <div className="w-[100%] mx-4 relative">
           {/* Show emoji picker */}
           {showEmojiPicker && (
             <div className="absolute bottom-[60px] left-0">
@@ -40,13 +40,19 @@ function Typesend() {
 
         <div>
           {/* Button to toggle emoji picker */}
-          <button type="button" onClick={() => setShowEmojiPicker((prev) => !prev)}>
-            😀
+          <button
+            type="button"
+            onClick={() => setShowEmojiPicker((prev) => !prev)}
+            className="text-3xl" // Adjust the size here
+          >
+            <span role="img" aria-label="smiley" style={{ fontSize: "2rem" }}>
+              😃
+            </span>
           </button>
         </div>
 
         <button type="submit">
-          <IoSend className="text-3xl" />
+          <IoSend className="text-5xl" />
         </button>
       </div>
     </form>
