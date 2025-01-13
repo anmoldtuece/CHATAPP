@@ -8,12 +8,15 @@ import { Toaster } from "react-hot-toast";
 import Logout from "./home/left1/Logout";
 
 import { Navigate, Route, Routes } from "react-router-dom";
+
 function App() {
   const [authUser, setAuthUser] = useAuth();
   console.log(authUser);
+
   return (
     <>
       <Routes>
+        {/* Home route - Protect with authUser */}
         <Route
           path="/"
           element={
@@ -23,22 +26,24 @@ function App() {
                 <Left />
                 <Right />
               </div>
-
-
-            
             ) : (
               <Navigate to={"/login"} />
             )
           }
         />
+        
+        {/* Login route - Redirect to home if already authenticated */}
         <Route
           path="/login"
           element={authUser ? <Navigate to="/" /> : <Login />}
         />
+        
+        {/* Signup route - Redirect to home if already authenticated */}
         <Route
           path="/signup"
           element={authUser ? <Navigate to="/" /> : <Signup />}
         />
+      
       </Routes>
       <Toaster />
     </>
@@ -46,17 +51,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
