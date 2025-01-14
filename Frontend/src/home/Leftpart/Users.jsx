@@ -4,10 +4,26 @@ import useGetAllUsers from "../../context/useGetAllUsers";
 
 function Users() {
   const [allUsers, loading] = useGetAllUsers();
-  console.log(allUsers);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <p className="text-gray-600">Loading users...</p>
+      </div>
+    );
+  }
+
+  if (!allUsers.length) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <p className="text-gray-600">No users found.</p>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1 className="px-8 py-2 text-white font-semibold bg-slate-800 rounded-md">
+    <div className="h-full">
+      <h1 className="px-8 py-2 text-white font-semibold bg-blue-300 rounded-md">
         Messages
       </h1>
       <div

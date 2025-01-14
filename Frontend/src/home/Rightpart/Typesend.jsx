@@ -20,7 +20,7 @@ function Typesend() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex space-x-1 h-[10vh] bg-gray-800 items-center">
+      <div className="flex space-x-1 h-[10vh] bg-white items-center">
         <div className="w-[100%] mx-4 relative">
           {/* Show emoji picker */}
           {showEmojiPicker && (
@@ -34,7 +34,7 @@ function Typesend() {
             placeholder="Type here"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="border-[1px] border-gray-700 flex items-center w-full py-3 px-3 rounded-xl grow outline-none bg-slate-900 mt-1"
+            className="border-[1px] border-black flex items-center w-full py-3 px-3 rounded-xl grow outline-none bg-slate-900 mt-1"
           />
         </div>
 

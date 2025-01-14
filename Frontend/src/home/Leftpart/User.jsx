@@ -10,23 +10,27 @@ function User({ user }) {
 
   return (
     <div
-      className={`hover:bg-slate-600 duration-300 ${
-        isSelected ? "bg-slate-700" : ""
+      className={`hover:bg-blue-300 duration-300 ${
+        isSelected ? "bg-white" : ""
       }`}
       onClick={() => setSelectedConversation(user)}
+      role="button"
+      aria-selected={isSelected}
+      aria-label={`Select conversation with ${user.fullname}`}
     >
-      <div className="flex space-x-4 px-8 py-3 hover:bg-gray-600 duration-300 cursor-pointer">
+      <div className="flex space-x-4 px-8 py-3 hover:bg-white duration-300 cursor-pointer">
         <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
-            {/* Use dynamic profile picture or fallback */}
+            {/* Dynamic profile picture with fallback */}
             <img
-              src={user.profile_pic || "/default-profile-pic.jpg"} // Fallback to a default image
+              src={user.profile_pic || "/default-profile-pic.jpg"}
               alt={`${user.fullname}'s Profile`}
+              loading="lazy"
             />
           </div>
         </div>
         <div>
-          <h3 className="text-white">{user.fullname}</h3>
+          <h3 className="text-black">{user.fullname}</h3>
           {isOnline && <p className="text-green-500">Online</p>}
         </div>
       </div>

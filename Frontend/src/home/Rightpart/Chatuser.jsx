@@ -12,42 +12,70 @@ function Chatuser() {
   };
 
   const handleProfileClick = () => {
-    setShowProfile(!showProfile); // Toggle the profile visibility
+    setShowProfile((prev) => !prev); // Toggle the profile visibility
   };
 
+  if (!selectedConversation) {
+    return null; // Return nothing if no conversation is selected
+  }
+
   return (
-    <div className="pl-5 pt-5 h-[12vh] flex space-x-4 bg-black duration-300">
+    <div className="pl-5 pt-5 h-[12vh] flex space-x-4 bg-white duration-300 items-center">
+      {/* Profile Picture */}
       <div>
-        <div className="avatar online" onClick={handleProfileClick}>
-          <div className="w-12 rounded-full cursor-pointer">
+        <div
+          className="avatar cursor-pointer"
+          onClick={handleProfileClick}
+          role="button"
+          aria-expanded={showProfile}
+          aria-label={`Toggle profile view for ${selectedConversation?.fullname}`}
+        >
+          <div
+            className={`w-12 rounded-full ${
+              onlineUsers.includes(selectedConversation._id) ? "online" : ""
+            }`}
+          >
             <img
               src={
                 selectedConversation?.profile_pic ||
                 "https://via.placeholder.com/150" // Fallback image
               }
-              alt={`${selectedConversation?.name || "User"}'s Profile`}
+              alt={`${selectedConversation?.fullname || "User"}'s Profile`}
               className="object-cover"
             />
           </div>
         </div>
       </div>
+
+      {/* User Info */}
       <div>
-        <h1 className="text-xl text-white">
+        <h1 className="text-xl text-black">
           {selectedConversation?.fullname || "Anonymous"}
         </h1>
-        <span className="text-sm text-gray-400">
-          {selectedConversation
-            ? getOnlineUsersStatus(selectedConversation._id)
-            : "Offline"}
+        <span className="text-sm text-black">
+          {getOnlineUsersStatus(selectedConversation._id)}
         </span>
       </div>
+
+      {/* Profile Popup */}
       {showProfile && (
-        <div className="mt-4 bg-gray-800 p-4 rounded-md text-white">
+        <div
+          className="absolute top-20 left-5 bg-white shadow-md p-4 rounded-md z-10"
+          role="dialog"
+          aria-label="User Profile"
+        >
           <img
-            src={selectedConversation?.profile_pic || "https://via.placeholder.com/150"}
+            src={
+              selectedConversation?.profile_pic ||
+              "https://via.placeholder.com/150"
+            }
             alt="Profile"
-            className="h-20 w-22 rounded-full object-cover mt-2"
+            className="h-20 w-20 rounded-full object-cover mb-2"
           />
+          <h2 className="text-black text-lg font-semibold">
+            {selectedConversation?.fullname}
+          </h2>
+          <p className="text-gray-500">{getOnlineUsersStatus(selectedConversation._id)}</p>
         </div>
       )}
     </div>
