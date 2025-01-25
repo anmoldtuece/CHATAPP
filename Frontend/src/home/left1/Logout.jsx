@@ -6,10 +6,11 @@ import toast from "react-hot-toast";
 
 function Logout() {
   const [loading, setLoading] = useState(false);
+
   const handleLogout = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("/api/user/logout");
+      const res = await axios.post("https://chatapp-1y9j.onrender.com/api/user/logout");
       localStorage.removeItem("ChatApp");
       Cookies.remove("jwt");
       setLoading(false);
@@ -18,12 +19,14 @@ function Logout() {
     } catch (error) {
       console.log("Error in Logout", error);
       toast.error("Error in logging out");
+      setLoading(false);
     }
   };
+
   return (
     <>
-      <div className="w-[4%]   bg-slate-950 text-white  flex flex-col justify-end ">
-        <div className="p-3  align-bottom ">
+      <div className="w-[4%] bg-slate-950 text-white flex flex-col justify-end ">
+        <div className="p-3 align-bottom ">
           <button>
             <TbLogout2
               className="text-5xl p-2 hover:bg-gray-600 rounded-lg duration-300"
@@ -35,4 +38,5 @@ function Logout() {
     </>
   );
 }
+
 export default Logout;

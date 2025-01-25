@@ -21,7 +21,7 @@ function Login() {
     };
 
     axios
-      .post("/api/user/login", userInfo)
+      .post("https://chatapp-1y9j.onrender.com/api/user/login", userInfo) // Updated backend URL
       .then((response) => {
         if (response.data) {
           toast.success("Login successful");
@@ -35,6 +35,7 @@ function Login() {
         }
       });
   };
+
   return (
     <>
       <div className="flex h-screen items-center justify-center">
@@ -49,7 +50,6 @@ function Login() {
             Login with your{" "}
             <span className="text-blue-600 font-semibold">Account</span>
           </h2>
-        
 
           {/* Email */}
           <label className="input input-bordered flex items-center gap-2">
@@ -74,6 +74,7 @@ function Login() {
               This field is required
             </span>
           )}
+
           {/* Password */}
           <label className="input input-bordered flex items-center gap-2">
             <svg
@@ -100,8 +101,8 @@ function Login() {
               This field is required
             </span>
           )}
-          {/* Text & Button */}
 
+          {/* Text & Button */}
           <div className="flex justify-center">
             <input
               type="submit"

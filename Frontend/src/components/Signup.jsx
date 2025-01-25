@@ -76,7 +76,7 @@ function Signup() {
     };
 
     await axios
-      .post("/api/user/signup", userInfo)
+      .post("https://chatapp-1y9j.onrender.com/api/user/signup", userInfo) // Updated backend URL
       .then((response) => {
         if (response.data) {
           toast.success("Signup successful");

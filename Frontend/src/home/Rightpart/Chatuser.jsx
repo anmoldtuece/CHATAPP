@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useConversation from "../../statemanage/useConversation.js";
 import { useSocketContext } from "../../context/SocketContext.jsx";
+import axios from "axios";
 
 function Chatuser() {
   const { selectedConversation } = useConversation();
@@ -15,6 +16,15 @@ function Chatuser() {
     setShowProfile((prev) => !prev); // Toggle the profile visibility
   };
 
+  const fetchUserData = async (userId) => {
+    try {
+      const response = await axios.get(`https://chatapp-1y9j.onrender.com/api/user/${userId}`);
+      console.log("User Data:", response.data);
+    } catch (error) {
+      console.log("Error fetching user data:", error);
+    }
+  };
+
   if (!selectedConversation) {
     return null; // Return nothing if no conversation is selected
   }
@@ -25,7 +35,10 @@ function Chatuser() {
       <div>
         <div
           className="avatar cursor-pointer"
-          onClick={handleProfileClick}
+          onClick={() => {
+            handleProfileClick();
+            fetchUserData(selectedConversation._id); // Fetch user data when profile is clicked
+          }}
           role="button"
           aria-expanded={showProfile}
           aria-label={`Toggle profile view for ${selectedConversation?.fullname}`}
