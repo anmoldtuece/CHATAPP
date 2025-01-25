@@ -13,9 +13,10 @@ dotenv.config();
 // middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
 
-const PORT = process.env.PORT || 5001;
+app.use(cors({ origin: '*' })); // Allow all origins or specify your frontend URL
+
+const PORT = process.env.PORT || 3000;
 const URI = process.env.MONGODB_URI;
 
 try {
@@ -28,7 +29,10 @@ try {
 //routes
 app.use("/api/user", userRoute);
 app.use("/api/message", messageRoute);
-
+app.get('/health', (req, res) => {
+    res.status(200).send('Server is healthy!');
+  });
+  
 server.listen(PORT, () => {
     console.log(`Server is Running on port ${PORT}`);
 });
