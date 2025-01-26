@@ -10,29 +10,40 @@ import { app, server } from "./SocketIO/server.js";
 
 dotenv.config();
 
-// middleware
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({ origin: '*' })); // Allow all origins or specify your frontend URL
+// Configure CORS to allow requests only from your frontend
+app.use(
+  cors({
+    origin: "https://chatapp-frontend-teal.vercel.app", // Frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    credentials: true, // Allow cookies
+  })
+);
 
 const PORT = process.env.PORT || 3000;
 const URI = process.env.MONGODB_URI;
 
+// Connect to MongoDB
 try {
-    mongoose.connect(URI);
-    console.log("Connected to MongoDB");
+  mongoose.connect(URI);
+  console.log("Connected to MongoDB");
 } catch (error) {
-    console.log(error);
+  console.error("MongoDB connection error:", error);
 }
 
-//routes
+// Routes
 app.use("/api/user", userRoute);
 app.use("/api/message", messageRoute);
-app.get('/health', (req, res) => {
-    res.status(200).send('Server is healthy!');
-  });
-  
+
+// Health Check Endpoint
+app.get("/health", (req, res) => {
+  res.status(200).send("Server is healthy!");
+});
+
+// Start the server
 server.listen(PORT, () => {
-    console.log(`Server is Running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
