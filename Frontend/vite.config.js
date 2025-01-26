@@ -6,13 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3001,
-  proxy: {
-  '/api': {
-    target: 'http://localhost:4002', // Ensure this URL is correct
-    changeOrigin: true,
-    secure: false, // If the target uses HTTPS and the certificate is invalid
-  },
-},
-
+    proxy: {
+      '/api': {
+        target: 'https://chatapp-1y9j.onrender.com', // Updated to your backend URL
+        changeOrigin: true,
+        secure: true, // Use true for HTTPS
+      },
+    },
   },
 });
