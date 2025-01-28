@@ -17,7 +17,7 @@ app.use(cookieParser());
 // Configure CORS to allow requests only from your frontend
 app.use(
   cors({
-    origin: "chatapp-flame-seven.vercel.app", // Frontend URL
+    origin: "chatapp-xi-woad.vercel.app", // Frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
     credentials: true, // Allow cookies
   })
