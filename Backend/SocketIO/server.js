@@ -10,7 +10,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       //"http://localhost:3001", // Local frontend
-      "chatapp-xi-woad.vercel.app", // Deployed frontend
+      "https://chatapp-xi-woad.vercel.app", // Deployed frontend
     ],
     methods: ["GET", "POST"],
     credentials: true, // Allow credentials (cookies, etc.)
