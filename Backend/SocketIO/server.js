@@ -9,8 +9,8 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-      "http://localhost:3001", // Local frontend
-      "https://chatapp-frontend-teal.vercel.app", // Deployed frontend
+      //"http://localhost:3001", // Local frontend
+      "chatapp-flame-seven.vercel.app", // Deployed frontend
     ],
     methods: ["GET", "POST"],
     credentials: true, // Allow credentials (cookies, etc.)
